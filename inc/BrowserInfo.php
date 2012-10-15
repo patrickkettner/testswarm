@@ -38,12 +38,21 @@ class BrowserInfo {
 		// Lazy-init and cache
 		if ( self::$swarmUaIndex === null ) {
 			global $swarmInstallDir;
+<<<<<<< HEAD
 			global $swarmContext;
 
 			// Convert from array with string values
 			// to an object with boolean values
 				$swarmUaIndex = new stdClass;
 				$browserSets = $swarmContext->getConf()->browserSets;
+=======
+      global $swarmContext;
+
+			// Convert from array with string values
+			// to an object with boolean values
+        $swarmUaIndex = new stdClass;
+        $browserSets = $swarmContext->getConf()->browserSets;
+>>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 			foreach ( $browserSets as $browserSetName => $browserSet ) {
 				foreach ( $browserSet as $browserSetIndex => $uaID ) {
 
@@ -53,8 +62,11 @@ class BrowserInfo {
 					list($browserName) = explode("|", $uaID);
 					$swarmUaIndex->$uaID->displayicon = strtolower( str_replace( ' ', '_', $browserName ) );
 
+<<<<<<< HEAD
 					$swarmUaIndex->$uaID->displayclasses = self::formatCSSClasses( $uaID );
 
+=======
+>>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 				}
 			}
 			self::$swarmUaIndex = $swarmUaIndex;
@@ -127,10 +139,17 @@ class BrowserInfo {
 	}
 
 	/** @return Selective array with UAParser results */
+<<<<<<< HEAD
 	public function getUserAgentValues() {
 		return array_intersect_key(
 			(array)$this->uaparserData,
 			array_flip(array( "osFull", "browser", "version", "major", "minor" ))
+=======
+	public function getUAParser() {
+		return array_intersect_key(
+			(array)$this->uaparserData,
+			array_flip(array( "os", "browser", "version", "major", "minor" ))
+>>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 		);
 	}
 
@@ -146,6 +165,7 @@ class BrowserInfo {
 	}
 
 	/** @return string */
+<<<<<<< HEAD
 	public static function formatCSSClasses( $name ) {
 		$classList = preg_split("/([\s]+|\|)/", $name );
 		$className;
@@ -161,6 +181,11 @@ class BrowserInfo {
 		$newUa->displayicon = self::formatBrowserName( $displayicon );
 		$newUa->displaytitle = self::formatDisplayTitle( $displaytitle );
 		$newUa->displayclasses = self::formatCSSClasses( $id );
+=======
+	public static function formatUA( $displayicon, $displaytitle, $id ) {
+		$newUa->displayicon = self::formatBrowserName( $displayicon );
+		$newUa->displaytitle = self::formatDisplayTitle( $displaytitle );
+>>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 		$newUa->id = $id;
 		return $newUa;
 	}
@@ -171,7 +196,11 @@ class BrowserInfo {
 		// Lazy-init and cache
 		if ( $this->swarmUaItem === null ) {
 			$browserSets = $this->context->getConf()->browserSets;
+<<<<<<< HEAD
 			$uaParserData = $this->getUserAgentValues();
+=======
+			$uaParserData = $this->getUAParser();
+>>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 			$found = false;
 			foreach ( $browserSets as $browserSetName => $browserSet ) {
 				foreach ( $browserSet as $browserSetIndex => $uaID ) {
