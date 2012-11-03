@@ -82,27 +82,26 @@ class UserPage extends Page {
 			return $html;
 		}
 
-		$this->setSubTitle( $data["userName"] );
+		$this->setSubTitle( $data['userName'] );
 
-		if ( count( $data["activeClients"] ) ) {
+		if ( count( $data['activeClients'] ) ) {
 
 			$html .= '<h2>Active clients</h2><div class="row">';
 
-			foreach ( $data["activeClients"] as $activeClient ) {
-				if ( $activeClient["uaData"] ) {
-					$diplayicon = $activeClient["uaData"]["displayicon"];
+			foreach ( $data['activeClients'] as $activeClient ) {
+				if ( $activeClient['uaData'] ) {
+					$filename = $activeClient['uaData']['swarmClass'];
 					$diplayclasses = $activeClient["uaData"]["displayclasses"];
-					$label = $activeClient["uaData"]["displaytitle"];
 				} else {
-					$diplayicon = "unknown";
-					$label = "Unrecognized [{$activeClient["uaID"]}]";
+					$filename = 'unknown';
+					$label = "Unrecognized [{$activeClient['uaID']}]";
 				}
 				$html .=
 					'<div class="span4"><div class="well">'
 					. '<div class="pull-right swarm-browsericon medium ' . htmlspecialchars( $activeClient["uaData"]["displayclasses"] ) . '"></div>'
 					. '<strong class="label">' . htmlspecialchars( $label ) . '</strong>'
 					. '<p>'
-					. '<small>Platform: ' . htmlspecialchars( $activeClient["uaUAParser"]["osFull"] )
+					. '<small>Platform: ' . htmlspecialchars( $activeClient['uaData']['osFull'] )
 					. '</small>'
 					. '<br>'
 					. '<small>Connected ' . self::getPrettyDateHtml( $activeClient, 'connected' ) . '</small>'
@@ -116,28 +115,28 @@ class UserPage extends Page {
 
 		}
 
-		if ( count( $data["recentJobs"] ) ) {
+		if ( count( $data['recentJobs'] ) ) {
 
 			$html .= '<h2>Recent jobs</h2><table class="table table-bordered swarm-results">';
 
 			// Build table header
 			$html .= '<thead><tr><td></td>';
-			foreach ( $data["uasInJobs"] as $uaID => $uaData ) {
+			foreach ( $data['uasInJobs'] as $uaID => $uaData ) {
 				$html .= '<th>' .
 					'<div class="swarm-browsericon ' . htmlspecialchars( $uaData["displayclasses"] ) . '"></div>' .
-					htmlspecialchars( preg_replace( "/\w+ /", "", $uaData["displaytitle"] ) ) .
+					htmlspecialchars( $uaData['browserVersion'] ) .
 					'</th>';
 			}
 			$html .= '</tr></thead><tbody>';
 
-			foreach ( $data["recentJobs"] as $job ) {
+			foreach ( $data['recentJobs'] as $job ) {
 
-				$html .= '<tr><th><a href="' . htmlspecialchars( $job["url"] ) . '">' . htmlspecialchars( strip_tags( $job["name"] ) ) . "</a></th>\n";
+				$html .= '<tr><th><a href="' . htmlspecialchars( $job['url'] ) . '">' . htmlspecialchars( strip_tags( $job['name'] ) ) . "</a></th>\n";
 
-				foreach ( $data["uasInJobs"] as $uaID => $uaData ) {
-					$html .= isset( $job["uaSummary"][$uaID] )
-						? ( '<td class="swarm-status swarm-status-' . $job["uaSummary"][$uaID] . '">'
-							. self::getStatusIconHtml( $job["uaSummary"][$uaID] )
+				foreach ( $data['uasInJobs'] as $uaID => $uaData ) {
+					$html .= isset( $job['uaSummary'][$uaID] )
+						? ( '<td class="swarm-status swarm-status-' . $job['uaSummary'][$uaID] . '">'
+							. self::getStatusIconHtml( $job['uaSummary'][$uaID] )
 							. '</td>'
 						)
 						: '<td class="swarm-status swarm-status-notscheduled"></td>';

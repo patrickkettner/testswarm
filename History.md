@@ -81,10 +81,6 @@ Complete list of issues solved in the 1.0.0 milestone:
 
 ### User agents
 
-* Added Chrome 18 - 22
-* Added Firefox 11 - 16
-* Added Opera 12
-* Added Safari 6.0
 * Added Android 1.6
 * Added Android 2.3
 * Added Fennec 5 - 7
@@ -133,8 +129,7 @@ Complete list of issues solved in the 1.0.0 milestone:
 * Add `lang="en" dir="ltr"` to `<html>`.
 * (#141) Old Perl example files in `/scripts/ that were no longer used or maintained have
   been removed from the repository.
-* (#143) Using [phpbrowscap](https://github.com/garetjax/phpbrowscap) as user agent
-  parser (data from <http://browsers.garykeith.com/>).
+* (#187) Using [ua-parser](https://github.com/tobie/ua-parser) as user agent parser.
 * Default settings are now stored in `/config/settings-default.json` (instead of
   hardcoded in `init.php`).
 * The HomePage now includes all information from the SwarmstateAction (including the number

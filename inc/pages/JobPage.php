@@ -77,7 +77,7 @@ class JobPage extends Page {
 
 		foreach ( $userAgents as $userAgent ) {
 			$html .= '<th><div class="swarm-browsericon ' . htmlspecialchars( $userAgent['displayclasses'] ) . '"></div>'
-				. htmlspecialchars( preg_replace( '/\w+ /', '', $userAgent['displaytitle'] ) )
+				. $userAgent['browserVersion']
 				. '</th>';
 		}
 
@@ -112,7 +112,7 @@ class JobPage extends Page {
 						'data-client-id' => isset( $uaRun['clientID'] ) ? $uaRun['clientID'] : '',
 					));
 					if ( isset( $uaRun['runResultsUrl'] ) && isset( $uaRun['runResultsLabel'] ) ) {
-						$runResultsTooltip = "Open run results for {$userAgents[$uaID]['displaytitle']}";
+						$runResultsTooltip = "Open run results for {$userAgents[$uaID]['browserFull']}";
 						$runResultsTagOpen = html_tag_open( 'a', array(
 							'rel' => 'nofollow',
 							'href' => $uaRun['runResultsUrl'],
@@ -133,7 +133,7 @@ class JobPage extends Page {
 							. ( $showResetRun ?
 								html_tag( 'i', array(
 									'class' => 'swarm-reset-run-single icon-remove-circle pull-right',
-									'title' => "Re-schedule run for {$userAgents[$uaID]['displaytitle']}",
+									'title' => "Re-schedule run for {$userAgents[$uaID]['browserFull']}",
 								) )
 								: ''
 							);
