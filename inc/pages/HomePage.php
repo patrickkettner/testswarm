@@ -58,7 +58,7 @@ class HomePage extends Page {
 					. '" class="btn btn-primary btn-large">Join the swarm</a></p>';
 				}
 			} else {
-				$uaParser = $browserInfo->getUAParser();
+				$uaParser = $browserInfo->getUserAgentValues();
 				$html .= '<div class="alert alert-info">'
 					. '<h4 class="alert-heading">TestSwarm does not recognize your browser.</h4>'
 					. '<p>Please join with one the below browsers.</p></div>'
@@ -67,7 +67,7 @@ class HomePage extends Page {
 					. ' including the following 2 codes:'
 					. '<br><strong><a href="https://github.com/tobie/ua-parser">ua-parser</a>:</strong> <code>'
 					. htmlspecialchars( print_r( array(
-							"Platform" => $uaParser["os"],
+							"Platform" => $uaParser["osFull"],
 							"Browser" => $uaParser["browser"],
 							"Version" => $uaParser["version"],
 							"MajorVer" => $uaParser["major"],
@@ -118,12 +118,9 @@ class HomePage extends Page {
 				. '<div class="span2">'
 				. '<div class="well well-small swarm-browseronline' . ( $isCurr ? " alert-info" : "" ) . '">'
 
-				. html_tag( "img", array(
-					"src" => swarmpath( "img/" . $userAgent["data"]["displayicon"] . ".sm.png" ),
-					"class" => "swarm-browsericon",
-					"alt" => "",
-					"title" => $userAgent["data"]["displaytitle"],
-				) )
+				. html_tag( "div", array(
+						"class" => "swarm-browsericon" . $userAgent["data"]["displayclasses"]
+					) )
 				. '<br>'
 
 				. html_tag( "span", array(

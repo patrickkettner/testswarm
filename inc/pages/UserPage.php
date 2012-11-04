@@ -91,6 +91,7 @@ class UserPage extends Page {
 			foreach ( $data["activeClients"] as $activeClient ) {
 				if ( $activeClient["uaData"] ) {
 					$diplayicon = $activeClient["uaData"]["displayicon"];
+					$diplayclasses = $activeClient["uaData"]["displayclasses"];
 					$label = $activeClient["uaData"]["displaytitle"];
 				} else {
 					$diplayicon = "unknown";
@@ -98,10 +99,10 @@ class UserPage extends Page {
 				}
 				$html .=
 					'<div class="span4"><div class="well">'
-					. '<img class="pull-right" src="' . swarmpath( "img/{$diplayicon}.sm.png" ) . '" alt="">'
+					. '<div class="pull-right swarm-browsericon medium ' . htmlspecialchars( $activeClient["uaData"]["displayclasses"] ) . '"></div>'
 					. '<strong class="label">' . htmlspecialchars( $label ) . '</strong>'
 					. '<p>'
-					. '<small>Platform: ' . htmlspecialchars( $activeClient["uaUAParser"]["os"] )
+					. '<small>Platform: ' . htmlspecialchars( $activeClient["uaUAParser"]["osFull"] )
 					. '</small>'
 					. '<br>'
 					. '<small>Connected ' . self::getPrettyDateHtml( $activeClient, 'connected' ) . '</small>'
@@ -123,11 +124,7 @@ class UserPage extends Page {
 			$html .= '<thead><tr><td></td>';
 			foreach ( $data["uasInJobs"] as $uaID => $uaData ) {
 				$html .= '<th>' .
-					'<img src="' . swarmpath( "img/{$uaData["displayicon"]}.sm.png" ) .
-					'" class="swarm-browsericon' .
-					'" alt="' . htmlspecialchars( $uaData["displaytitle"] ) .
-					'" title="' . htmlspecialchars( $uaData["displaytitle"] ) .
-					'"><br>' .
+					'<div class="swarm-browsericon ' . htmlspecialchars( $uaData["displayclasses"] ) . '"></div>' .
 					htmlspecialchars( preg_replace( "/\w+ /", "", $uaData["displaytitle"] ) ) .
 					'</th>';
 			}

@@ -57,7 +57,7 @@ class UserAction extends Action {
 					"uaID" => $clientRow->useragent_id,
 					"uaRaw" => $bi->getRawUA(),
 					"uaData" => $bi->getSwarmUaItem(),
-					"uaUAParser" => $bi->getUAParser(),
+					"uaUAParser" => $bi->getUserAgentValues(),
 				);
 				self::addTimestampsTo( $activeClient, $clientRow->created, "connected" );
 				self::addTimestampsTo( $activeClient, $clientRow->updated, "pinged" );

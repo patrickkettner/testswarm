@@ -72,6 +72,84 @@ h2 + .row {
 	margin: 10px 0;
 }
 
+.swarm-browsericon {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.swarm-browsericon.medium {
+	height: 48px;
+	width: 48px;
+}
+
+.swarm-browsericon.chrome {
+	background-image: url('../img/chrome.sm.png');
+}
+
+.swarm-browsericon.firefox {
+	background-image: url('../img/firefox.sm.png');
+}
+
+.swarm-browsericon.ie {
+	background-image: url('../img/ie.sm.png');
+}
+
+.swarm-browsericon.ie.ie_6 {
+	background-image: url('../img/ie_6.sm.png');
+}
+
+.swarm-browsericon.ie.ie_9 {
+	background-image: url('../img/ie_9.sm.png');
+}
+
+.swarm-browsericon.ie.ie_10 {
+	background-image: url('../img/ie_10.sm.png');
+}
+
+.swarm-browsericon.iemobile {
+	background-image: url('../img/ie_10.sm.png');
+}
+
+.swarm-browsericon.opera {
+	background-image: url('../img/opera.sm.png');
+}
+
+.swarm-browsericon.safari {
+	background-image: url('../img/safari.sm.png');
+}
+
+.swarm-browsericon.android {
+	background-image: url('../img/android.sm.png');
+}
+
+.swarm-browsericon.fennec {
+	background-image: url('../img/fennec.sm.png');
+}
+
+.swarm-browsericon.iphone {
+	background-image: url('../img/iphone.sm.png');
+}
+
+.swarm-browsericon.ipad {
+	background-image: url('../img/ipad.sm.png');
+}
+
+.swarm-browsericon.palm_web {
+	background-image: url('../img/palm_web.sm.png');
+}
+
+.swarm-browsericon.blackberry {
+	background-image: url('../img/blackberry.sm.png');
+}
+
+.swarm-browsericon.s60 {
+	background-image: url('../img/s60.sm.png');
+}
+
+.swarm-browsericon.unknown {
+	background-image: url('../img/unknown.sm.png');
+}
+
 .swarm-browseronline .swarm-onlineclients,
 .swarm-browseronline .swarm-browsername {
 	font-size: 11px;
@@ -109,8 +187,9 @@ table.swarm-results tbody td.swarm-status {
 	background: #fff;
 }
 
-table.swarm-results th img.swarm-browsericon {
-	max-height: 28px;
+table.swarm-results th .swarm-browsericon {
+	height: 28px;
+	background-size: 28px;
 }
 
 table.swarm-results tbody td.swarm-status {

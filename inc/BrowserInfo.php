@@ -38,12 +38,12 @@ class BrowserInfo {
 		// Lazy-init and cache
 		if ( self::$swarmUaIndex === null ) {
 			global $swarmInstallDir;
-      global $swarmContext;
+			global $swarmContext;
 
 			// Convert from array with string values
 			// to an object with boolean values
-        $swarmUaIndex = new stdClass;
-        $browserSets = $swarmContext->getConf()->browserSets;
+				$swarmUaIndex = new stdClass;
+				$browserSets = $swarmContext->getConf()->browserSets;
 			foreach ( $browserSets as $browserSetName => $browserSet ) {
 				foreach ( $browserSet as $browserSetIndex => $uaID ) {
 
@@ -52,6 +52,8 @@ class BrowserInfo {
 
 					list($browserName) = explode("|", $uaID);
 					$swarmUaIndex->$uaID->displayicon = strtolower( str_replace( ' ', '_', $browserName ) );
+
+					$swarmUaIndex->$uaID->displayclasses = self::formatCSSClasses( $uaID );
 
 				}
 			}
@@ -125,10 +127,10 @@ class BrowserInfo {
 	}
 
 	/** @return Selective array with UAParser results */
-	public function getUAParser() {
+	public function getUserAgentValues() {
 		return array_intersect_key(
 			(array)$this->uaparserData,
-			array_flip(array( "os", "browser", "version", "major", "minor" ))
+			array_flip(array( "osFull", "browser", "version", "major", "minor" ))
 		);
 	}
 
@@ -144,9 +146,21 @@ class BrowserInfo {
 	}
 
 	/** @return string */
+	public static function formatCSSClasses( $name ) {
+		$classList = preg_split("/([\s]+|\|)/", $name );
+		$className;
+		foreach ($classList as $class) {
+			$className = $className . (' ' . implode('_', $classList));
+			array_pop($classList);
+		};
+		return strtolower($className);
+	}
+
+	/** @return string */
 	public static function formatUA( $displayicon, $displaytitle, $id ) {
 		$newUa->displayicon = self::formatBrowserName( $displayicon );
 		$newUa->displaytitle = self::formatDisplayTitle( $displaytitle );
+		$newUa->displayclasses = self::formatCSSClasses( $id );
 		$newUa->id = $id;
 		return $newUa;
 	}
@@ -157,7 +171,7 @@ class BrowserInfo {
 		// Lazy-init and cache
 		if ( $this->swarmUaItem === null ) {
 			$browserSets = $this->context->getConf()->browserSets;
-			$uaParserData = $this->getUAParser();
+			$uaParserData = $this->getUserAgentValues();
 			$found = false;
 			foreach ( $browserSets as $browserSetName => $browserSet ) {
 				foreach ( $browserSet as $browserSetIndex => $uaID ) {
