@@ -105,7 +105,6 @@ class BrowserInfo {
 		$uaData->browserName = $uaparserData->browser;
 		$uaData->browserVersion = $uaparserData->version;
 		$uaData->browserFull = $uaparserData->browserFull;
-
 		$uaData->swarmClass = strtolower( str_replace( ' ', '_', $uaData->browserName ) );
 
 		$this->rawUserAgent = $userAgent;
@@ -122,11 +121,6 @@ class BrowserInfo {
 	/** @return object */
 	public function getUaData() {
 		return $this->uaData;
-		return array_intersect_key(
-			(array)$this->uaparserData,
-			array_flip(array( "osFull", "browser", "version", "major", "minor" ))
-=======
->>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 	}
 
 	/**
@@ -144,7 +138,6 @@ class BrowserInfo {
 		$uaData->browserName = $parts[0];
 		$uaData->browserVersion = $parts[1];
 		$uaData->browserFull = "$parts[0] $parts[1]";
-
 		$uaData->swarmClass = strtolower( str_replace( ' ', '_', $uaData->browserName ) );
 		$uaData->id = $uaID;
 
@@ -155,15 +148,6 @@ class BrowserInfo {
 			array_pop($classList);
 		};
 		return strtolower($className);
-	}
-
-	/** @return string */
-		$newUa->displayclasses = self::formatCSSClasses( $id );
-=======
-	public static function formatUA( $displayicon, $displaytitle, $id ) {
-		$newUa->displayicon = self::formatBrowserName( $displayicon );
-		$newUa->displaytitle = self::formatDisplayTitle( $displaytitle );
->>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 	}
 
 	/**
@@ -180,9 +164,6 @@ class BrowserInfo {
 		if ( $this->swarmUaItem === null ) {
 			$browserSets = $this->context->getConf()->browserSets;
 			$uaData = $this->getUaData();
-			$uaParserData = $this->getUserAgentValues();
-=======
->>>>>>> Migrate from Browscap to ua-parser. Fixes #187.
 			$found = false;
 			$precision = 0;
 			foreach ( $browserSets as $browserSetName => $browserSet ) {

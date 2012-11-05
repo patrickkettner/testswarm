@@ -94,23 +94,11 @@ h2 + .row {
 	background-image: url('../img/ie.sm.png');
 }
 
-.swarm-browsericon.ie.ie_6 {
-	background-image: url('../img/ie_6.sm.png');
-}
-
-.swarm-browsericon.ie.ie_9 {
-	background-image: url('../img/ie_9.sm.png');
-}
-
-.swarm-browsericon.ie.ie_10 {
-	background-image: url('../img/ie_10.sm.png');
-}
-
 .swarm-browsericon.iemobile {
-	background-image: url('../img/ie_10.sm.png');
+	background-image: url('../img/iemobile.sm.png');
 }
 
-.swarm-browsericon.opera {
+.swarm-browsericon.opera , .swarm-browsericon.opera_mini, .swarm-browsericon.opera_mobile {
 	background-image: url('../img/opera.sm.png');
 }
 

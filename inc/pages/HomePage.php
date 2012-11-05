@@ -110,13 +110,12 @@ class HomePage extends Page {
 				. '<div class="well well-small swarm-browseronline' . ( $isCurr ? ' alert-info' : '' ) . '">'
 
 				. html_tag( "div", array(
-						"class" => "swarm-browsericon" . $userAgent["data"]["displayclasses"]
+						"class" => "swarm-browsericon " . $userAgent["data"]["swarmClass"]
 					) )
-				. '<br>'
 
 				. html_tag( "span", array(
 					"class" => "badge swarm-browsername",
-				), $userAgent["data"]["displaytitle"] )
+				), $userAgent["data"]["browserFull"] )
 
 				. '<br>'
 

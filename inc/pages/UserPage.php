@@ -91,14 +91,14 @@ class UserPage extends Page {
 			foreach ( $data['activeClients'] as $activeClient ) {
 				if ( $activeClient['uaData'] ) {
 					$filename = $activeClient['uaData']['swarmClass'];
-					$diplayclasses = $activeClient["uaData"]["displayclasses"];
+					$diplayclasses = $activeClient["uaData"]["swarmClass"];
 				} else {
 					$filename = 'unknown';
 					$label = "Unrecognized [{$activeClient['uaID']}]";
 				}
 				$html .=
 					'<div class="span4"><div class="well">'
-					. '<div class="pull-right swarm-browsericon medium ' . htmlspecialchars( $activeClient["uaData"]["displayclasses"] ) . '"></div>'
+					. '<div class="pull-right swarm-browsericon medium ' . htmlspecialchars( $activeClient["uaData"]["swarmClass"] ) . '"></div>'
 					. '<strong class="label">' . htmlspecialchars( $label ) . '</strong>'
 					. '<p>'
 					. '<small>Platform: ' . htmlspecialchars( $activeClient['uaData']['osFull'] )
@@ -123,7 +123,7 @@ class UserPage extends Page {
 			$html .= '<thead><tr><td></td>';
 			foreach ( $data['uasInJobs'] as $uaID => $uaData ) {
 				$html .= '<th>' .
-					'<div class="swarm-browsericon ' . htmlspecialchars( $uaData["displayclasses"] ) . '"></div>' .
+					'<div class="swarm-browsericon ' . htmlspecialchars( $uaData["swarmClass"] ) . '"></div>' .
 					htmlspecialchars( $uaData['browserVersion'] ) .
 					'</th>';
 			}

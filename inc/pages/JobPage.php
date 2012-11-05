@@ -76,7 +76,7 @@ class JobPage extends Page {
 		$html = '<tr><th>&nbsp;</th>';
 
 		foreach ( $userAgents as $userAgent ) {
-			$html .= '<th><div class="swarm-browsericon ' . htmlspecialchars( $userAgent['displayclasses'] ) . '"></div>'
+			$html .= '<th><div class="swarm-browsericon ' . htmlspecialchars( $userAgent['swarmClass'] ) . '"></div>'
 				. $userAgent['browserVersion']
 				. '</th>';
 		}

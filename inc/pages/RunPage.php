@@ -38,7 +38,7 @@ class RunPage extends Page {
 			'<div class="row">'
 				. '<div class="span2">'
 					. '<div class="well pagination-centered thumbnail">'
-					. '<div class="swarm-browsericon medium ' . htmlspecialchars( $uaItem->displayclasses ) . '"></div>'
+					. '<div class="swarm-browsericon medium ' . htmlspecialchars( $uaItem->swarmClass ) . '"></div>'
 					. '<span class="label">' . htmlspecialchars( $uaData->browserFull ) . '</span>'
 					. '</div>'
 				. '</div>'
